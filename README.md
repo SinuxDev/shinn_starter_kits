@@ -23,7 +23,7 @@
 ### **1. Clone the repository**
 
 ```bash
-git clone https://github.com/SinuxDev/own_starter_kits
+git clone https://github.com/SinuxDev/shinn_starter_kits
 cd 3D_Printers_Projects
 ```
 
