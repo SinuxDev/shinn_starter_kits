@@ -5,23 +5,26 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const fs = require("fs");
 const path = require("path");
-const mongoose = require("mongoose");
+const compression = require("compression");
 
 require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 7000;
-const MONGO_URI = process.env.MONGO_URI;
+const limiter = require("./middleware/limiter");
+const connectDB = require("./config/db");
 
 app.use(helmet());
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(limiter);
+app.use(compression());
 
 (async () => {
   try {
-    await mongoose.connect(MONGO_URI);
+    await connectDB();
     console.log("Connected to MongoDB");
 
     const routesPath = path.join(__dirname, "routes");
