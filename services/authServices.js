@@ -42,3 +42,35 @@ exports.adminRegister = async (adminData) => {
   await AdminRepo.createdAdmin(newAdmin);
   return "Admin created successfully";
 };
+
+exports.adminLogin = async (email, password) => {
+  if (!validator.isEmail(email)) {
+    throw new Error("Invalid email format");
+  }
+
+  const existingAdmin = await AdminRepo.findByEmail(email);
+
+  if (!existingAdmin) {
+    throw new Error("Invalid credentials");
+  }
+
+  const isPasswordValid = await bcrypt.compare(
+    password,
+    existingAdmin.password
+  );
+
+  if (!isPasswordValid) {
+    throw new Error("Invalid credentials");
+  }
+
+  const token = jwt.sign(
+    { email: existingAdmin.email, id: existingAdmin._id },
+    JWT_SECRET,
+    { expiresIn: "7d" }
+  );
+
+  return {
+    token,
+    admin: existingAdmin,
+  };
+};
