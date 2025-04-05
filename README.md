@@ -8,13 +8,13 @@
 
 ## Features
 
-✅ Secure authentication using **bcrypt** for password hashing and **JWT** for token-based authentication  
-✅ Role-based access control (Admin & Users)  
-✅ CRUD operations for **products and categories**  
-✅ Middleware-based **authorization** to protect API routes  
-✅ MongoDB integration with **Mongoose ORM**  
-✅ Structured routing with **auto-loading routes**  
-✅ Uses **dotenv** for environment variables
+✅ 🔐 Secure authentication using bcrypt and JWT
+✅ 🔑 Role-based access control (Admin & Users)
+✅ 🛡️ Middleware-based authorization to protect routes
+✅ 🗂️ Modular architecture with auto-loaded routes
+✅ 🧠 MongoDB integration using Mongoose
+✅ 🧪 Input validation using validator
+✅ 📦 Environment variables with dotenv
 
 ---
 
@@ -65,14 +65,19 @@ The server will run on `http://localhost:7000`
 
 ```
 Own Starter Kits (Shinn)
-│── controllers/        # API request handlers
-│── middleware/         # Authentication middleware
-│── models/            # Mongoose schemas
-│── routes/            # API route files
-│── server.js          # Main server file
-│── .env               # Environment variables
-│── package.json       # Dependencies and scripts
-│── README.md          # Project documentation
+│── config/             # DB config and environment setup
+│── controllers/        # Handles API requests
+│── middleware/         # Auth middleware and rate limiter
+│── models/             # Mongoose schemas
+│── repositories/       # Data access layer
+│── services/           # Business logic layer
+│── routes/             # Route handlers
+│── utils/              # Helper functions (optional)
+│── .env                # Environment config
+│── server.js           # App entry point
+│── package.json        # Project metadata & scripts
+│── README.md           # Documentation
+
 ```
 
 ---
